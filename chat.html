@@ -1,0 +1,28 @@
+<html>
+<head>
+<script>
+  var ws = new WebSocket('ws://localhost:8081', 'echo-protocol');
+ 
+  ws.addEventListener("message", function(e) {
+    var msg = e.data;
+    document.getElementById('chatlog').innerHTML += '<br>' + msg;
+  });
+
+  function sendMessage(){
+    console.log('sendMessage');
+    var message = document.getElementById('message').value;
+    ws.send(message);
+  }  
+ 	
+</script>	
+</head>
+<body>
+  <div id="chatlog">
+  </div>
+  <br/>
+  <textarea cols="20" rows="5" id="message">
+  </textarea>
+  <br />
+  <input type="button" value="Send" onclick="sendMessage()" />
+</body>
+</html>
